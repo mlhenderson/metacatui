@@ -44,7 +44,7 @@ define([
         this.maxYear = options.maxYear || new Date().getFullYear();
         this.queryServiceUrl =
           options.queryServiceUrl || MetacatUI.appModel.get("queryServiceUrl");
-        this.maxQueryLengthGETs = MetacatUI.appModel.get("queryMaxLengthGETs");
+        this.maxQueryLengthGETs = MetacatUI.appModel.get("maxQueryLengthGETs");
 
         if (MetacatUI.appModel.get("defaultSearchFields")?.length)
           this.fields = MetacatUI.appModel.get("defaultSearchFields").join(",");
