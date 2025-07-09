@@ -1474,6 +1474,20 @@ define([
        */
       showError(message) {
         this.$el.removeClass("loading");
+
+        // enable users to remove a failed upload
+        this.$(".controls button").prop("disabled", false);
+        this.$(".disable-layer").remove();
+
+        // reduce number of active uploads to allow "add files" button to function
+        const { packageModel } = MetacatUI.rootDataPackage;
+        const numLoadingFiles = packageModel.get("numLoadingFiles");
+        const isLoadingFiles = packageModel.get("isLoadingFiles");
+        console.log(`numLoadingFiles: ${numLoadingFiles}`);
+        console.log(`isLoadingFiles: ${isLoadingFiles}`);
+        packageModel.set("numLoadingFiles", numLoadingFiles - 1);
+        packageModel.set("isLoadingFiles", packageModel.get("numLoadingFiles") > 0);
+                
         const nameColumn = this.$(".name");
         nameColumn.addClass("error");
         // Append an error message
